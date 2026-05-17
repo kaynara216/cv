@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Althaf Rafka Wilyansyah — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a2e;
+      --paper: #faf7f2;
+      --gold: #c9a84c;
+      --gold-light: #f0d98a;
+      --rust: #8b3a2a;
+      --cream: #f4ede0;
+      --muted: #6b6458;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 4rem 3rem 4rem 5rem;
+      position: relative;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: 0; bottom: 0;
+      width: 120px;
+      background: var(--ink);
+      clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%);
+      z-index: 2;
+    }
+
+    .avatar-ring {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      padding: 6px;
+      background: var(--ink);
+      margin-bottom: 2.5rem;
+      position: relative;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .avatar-ring img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--rust) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: white;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      text-align: right;
+      animation: fadeDown 0.9s ease 0.1s both;
+    }
+
+    .hero-name span {
+      color: var(--gold);
+    }
+
+    .hero-title {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-top: 1rem;
+      text-align: right;
+      animation: fadeDown 1s ease 0.2s both;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.5rem 0 1.5rem auto;
+      animation: fadeDown 1s ease 0.3s both;
+    }
+
+    .hero-tagline {
+      color: #ccc;
+      font-size: 0.9rem;
+      text-align: right;
+      max-width: 280px;
+      animation: fadeDown 1s ease 0.4s both;
+    }
+
+    .hero-right {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 4rem 4rem 5rem;
+      position: relative;
+    }
+
+    .profile-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      animation: fadeRight 0.9s ease 0.3s both;
+    }
+
+    .profile-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      animation: fadeRight 0.9s ease 0.4s both;
+    }
+
+    .profile-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 400px;
+      animation: fadeRight 0.9s ease 0.5s both;
+    }
+
+    .contact-chips {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      animation: fadeRight 0.9s ease 0.6s both;
+    }
+
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--ink);
+    }
+
+    .chip-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ── SECTIONS ── */
+    .sections {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 4rem;
+    }
+
+    .sidebar { display: flex; flex-direction: column; gap: 3rem; }
+    .main-col { display: flex; flex-direction: column; gap: 3.5rem; }
+
+    .section-block { animation: fadeUp 0.7s ease both; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+    }
+
+    /* Achievement */
+    .achievement-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Language */
+    .lang-item { margin-bottom: 1rem; }
+    .lang-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .lang-level {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .lang-bar {
+      height: 3px;
+      background: #e0d8cc;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .lang-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--gold), var(--rust));
+      border-radius: 2px;
+      transform-origin: left;
+      animation: growBar 1.2s ease 0.5s both;
+    }
+
+    /* Soft Skills */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--ink);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* Academic Timeline */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), var(--rust));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.5rem;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--paper);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .timeline-year {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-school {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .timeline-location {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Strengths */
+    .strength-card {
+      background: var(--cream);
+      border: 1px solid #e5ddd0;
+      border-left: 4px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0 4px 4px 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .strength-card:hover {
+      transform: translateX(6px);
+      box-shadow: -4px 0 0 var(--rust);
+      border-left-color: var(--rust);
+    }
+
+    .strength-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .strength-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: #888;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+
+    footer strong { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes growBar {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left {
+        align-items: center;
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+      .hero-left::after { display: none; }
+      .hero-name, .hero-title, .hero-tagline { text-align: center; }
+      .hero-divider { margin: 1.5rem auto; }
+      .hero-right { padding: 3rem 2rem; }
+      .sections { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="avatar-ring">
+      <div class="avatar-placeholder">AR</div>
+    </div>
+    <div class="hero-name">
+      Althaf Rafka<br><span>Wilyansyah</span>
+    </div>
+    <div class="hero-title">Curriculum Vitae</div>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Siswa berprestasi dengan semangat belajar tinggi dan kepribadian yang hangat.</p>
+  </div>
+
+  <div class="hero-right">
+    <div class="profile-label">Tentang Saya</div>
+    <h1 class="profile-heading">Halo, saya<br>Althaf Rafka.</h1>
+    <p class="profile-text">
+      Nama saya Althaf Rafka Wilyansyah. Saya lahir di Bantul pada 21 Januari 2010.
+      Saya adalah seseorang yang aktif, humoris, dan senang berinteraksi dengan orang lain.
+      Hobi saya adalah berlari.
+    </p>
+    <div class="contact-chips">
+      <div class="chip">
+        <div class="chip-icon">📞</div>
+        <span>+62 856 0249 1811</span>
+      </div>
+      <div class="chip">
+        <div class="chip-icon">✉️</div>
+        <span>vrnkazex@gmail.com</span>
+      </div>
+      <div class="chip">
+        <div class="chip-icon">📍</div>
+        <span>Yonif Raider 400 Br</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ══ CONTENT ══ -->
+<div class="sections">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- Achievement -->
+    <div class="section-block">
+      <div class="section-label">Pencapaian</div>
+      <h2 class="section-title">Achievement</h2>
+      <p class="achievement-text">
+        Membuat orang tua bangga dengan masuk ke sekolah ini adalah pencapaian terbesar saya sejauh ini dan satu-satunya.
+      </p>
+    </div>
+
+    <!-- Language -->
+    <div class="section-block">
+      <div class="section-label">Kemampuan Bahasa</div>
+      <h2 class="section-title">Language</h2>
+
+      <div class="lang-item">
+        <div class="lang-name">Bahasa Indonesia</div>
+        <div class="lang-level">Native — Formal & Informal</div>
+        <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-name">Bahasa Jawa (Ngoko)</div>
+        <div class="lang-level">Conversational — percakapan sehari-hari</div>
+        <div class="lang-bar"><div class="lang-fill" style="width:75%"></div></div>
+      </div>
+
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Digital-Native — online & code-switching</div>
+        <div class="lang-bar"><div class="lang-fill" style="width:55%"></div></div>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="section-block">
+      <div class="section-label">Keterampilan</div>
+      <h2 class="section-title">Soft Skills</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Quick Adaptability</span>
+        <span class="skill-tag">Versatile Learner</span>
+        <span class="skill-tag">Collaborative Spirit</span>
+        <span class="skill-tag">Positive Attitude</span>
+        <span class="skill-tag">Willingness to Try</span>
+        <span class="skill-tag">Social Intelligence</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-col">
+
+    <!-- Academic -->
+    <div class="section-block">
+      <div class="section-label">Riwayat Pendidikan</div>
+      <h2 class="section-title">Academic</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2025 — Sekarang</div>
+          <div class="timeline-school">Taruna Nusantara Senior High School</div>
+          <div class="timeline-location">Magelang, Central Java, Indonesia</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022 — 2025</div>
+          <div class="timeline-school">State Junior High School 21 Semarang</div>
+          <div class="timeline-location">Semarang, Central Java, Indonesia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strengths -->
+    <div class="section-block">
+      <div class="section-label">Kelebihan Diri</div>
+      <h2 class="section-title">Strengths</h2>
+
+      <div class="strength-card">
+        <div class="strength-name">Strong Memory Retention</div>
+        <div class="strength-desc">
+          Kemampuan luar biasa untuk menyerap dan mengingat informasi, terutama pada mata pelajaran konseptual, sehingga proses belajar menjadi sangat efisien.
+        </div>
+      </div>
+
+      <div class="strength-card">
+        <div class="strength-name">Natural Humor & Charisma</div>
+        <div class="strength-desc">
+          Kepribadian yang secara alami humoris membangun kedekatan dengan mudah, berkontribusi positif pada dinamika kelompok, dan membuat setiap interaksi menjadi berkesan.
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Althaf Rafka Wilyansyah</strong> &nbsp;·&nbsp; Curriculum Vitae &nbsp;·&nbsp; 2025
+</footer>
+
+</body>
+</html>
